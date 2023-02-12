@@ -81,7 +81,7 @@ function updateMensajes(msjs) {
 // WebSocket
 
 socket.on(keys.nuevoProducto, () => {
-  fetch("http://localhost:8080/api/productos-test")
+  fetch("http://localhost:8080/api/productos")
     .then((res) => res.json())
     .then((data) => {
       updateProductos({ items: data });

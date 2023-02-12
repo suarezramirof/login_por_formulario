@@ -1,0 +1,28 @@
+[{
+    "nombre": "Globo terráqueo",
+    "descripcion": "Globo terráqueo de 30 cm",
+    "codigo": "GT30",
+    "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-128.png",
+    "precio": 200,
+    "stock": 10,
+    "timestamp": 1673142862487,
+    "id": 1
+}, {
+    "nombre": "Producto",
+    "descripcion": "Una calculadora excelente",
+    "codigo": "Calc123",
+    "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-128.png",
+    "precio": 40,
+    "stock": 5,
+    "timestamp": 1675624002717,
+    "id": 2
+}, {
+    "nombre": "Escuadra",
+    "descripcion": "Escuadra de 45°, 20 cm",
+    "codigo": "escuadra123",
+    "foto": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-128.png",
+    "precio": 24,
+    "stock": 10,
+    "timestamp": 1675631589626,
+    "id": 3
+}]

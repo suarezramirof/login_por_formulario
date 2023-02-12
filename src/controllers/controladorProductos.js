@@ -5,12 +5,11 @@ class ControladorProductos {
     this.productos = productos;
   }
 
-  getSampleProducts = (_req, res) => {
-    try {
-      res.json(this.productos.getSample());
-    } catch (error) {
-      console.log(error);
-    }
+  getProducts = (_req, res) => {
+    this.productos
+      .getAll()
+      .then((data) => res.json(data))
+      .catch((error) => res.json(error));
   };
 }
 
