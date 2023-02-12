@@ -18,8 +18,5 @@
     "normalizr": "^3.6.2",
     "socket.io": "^4.5.4",
     "sqlite3": "^5.1.4"
-  },
-  "devDependencies": {
-    "@faker-js/faker": "^7.6.0"
   }
 }
