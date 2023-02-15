@@ -12,17 +12,17 @@ const keys = {
 
 const schema = normalizr.schema;
 const user = new schema.Entity("author");
-const schemaMensajes = new schema.Entity("mensajes", { author: user });
+const schemaMessages = new schema.Entity("messages", { author: user });
 
 // Funciones
 
-function denormalizar(dataNormalizada) {
+function denormalize(normalizedData) {
   const data = normalizr.denormalize(
-    dataNormalizada.result,
-    [schemaMensajes],
-    dataNormalizada.entities
+    normalizedData.result,
+    [schemaMessages],
+    normalizedData.entities
   );
-  const largoNormalizado = JSON.stringify(dataNormalizada).length;
+  const largoNormalizado = JSON.stringify(normalizedData).length;
   const largoOriginal = JSON.stringify(data).length;
   const compresion = Math.round((largoNormalizado / largoOriginal) * 100);
   showCompresion(compresion);
@@ -66,6 +66,19 @@ function updateProductos(datos) {
     });
 }
 
+function cargarProducto(e) {
+  const producto = {
+    nombre: document.getElementById("title").value,
+    precio: parseFloat(document.getElementById("price").value),
+    foto: document.getElementById("thumbnail").value,
+  };
+  socket.emit(keys.cargarProducto, producto);
+  document.getElementById("title").value = "";
+  document.getElementById("price").value = "";
+  document.getElementById("thumbnail").value = "";
+  return false;
+}
+
 function updateMensajes(msjs) {
   fetch("views/partials/mensajes.hbs")
     .then((resp) => resp.text())
@@ -88,8 +101,8 @@ socket.on(keys.nuevoProducto, () => {
     });
 });
 
-socket.on(keys.nuevoMensaje, (mensajesNormalizados) => {
-  const mensajes = denormalizar(mensajesNormalizados);
+socket.on(keys.nuevoMensaje, (normalizedMessages) => {
+  const mensajes = denormalize(normalizedMessages);
   updateMensajes({ msjs: mensajes });
 });
 
