@@ -1,12 +1,12 @@
 import fs from "fs/promises";
 
-class ContenedorArchivos {
-  constructor(ruta) {
-    this.ruta = ruta;
+class FileContainer {
+  constructor(route) {
+    this.route = route;
   }
 
   async getAll() {
-    const items = await fs.readFile(this.ruta, "utf-8");
+    const items = await fs.readFile(this.route, "utf-8");
     return JSON.parse(items);
   }
 
@@ -17,18 +17,12 @@ class ContenedorArchivos {
 
   async add(item) {
     const items = await this.getAll();
-    items.push({...item, id: items.length});
+    items.push({...item, id: items.length + 1});
     await this.updateAll(items);
   }
 
   async updateAll(data) {
-    await fs.writeFile(this.ruta, JSON.stringify(data), "utf-8");
-  }
-
-  async update(data, id) {
-    // const [item] = this.items.map((elem) => elem.id == id);
-    // item = { ...item, ...data };
-    // await this.updateAll()
+    await fs.writeFile(this.route, JSON.stringify(data), "utf-8");
   }
 
   async delete(id) {
@@ -38,4 +32,4 @@ class ContenedorArchivos {
   }
 }
 
-export default ContenedorArchivos;
+export default FileContainer;
