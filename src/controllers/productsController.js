@@ -1,5 +1,5 @@
 import { products } from "../daos/index.js";
-import keys from "../ws_keys.js";
+import keys from "../sockets/ws_keys.js";
 
 class ProductsController {
   constructor(products) {

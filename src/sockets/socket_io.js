@@ -1,7 +1,9 @@
 import messagesController from "../controllers/messagesController.js";
 import productsController from "../controllers/productsController.js";
-import keys from "../ws_keys.js";
-const socketController = (socket) => {
+import keys from "./ws_keys.js";
+
+export function start(io) {
+  io.on("connection", (socket) => {
     console.log(`Nuevo cliente conectado en socket: ${socket.id}`);
     messagesController.viewMessages(socket);
     socket.emit(keys.nuevoProducto);
@@ -9,8 +11,10 @@ const socketController = (socket) => {
       productsController.addProductSocket(prod, io);
     });
     socket.on(keys.enviarMensaje, (msj) =>
-      messagesController.addMessage(msj, io)
+      messagesController
+        .addMessage(msj, io)
+        .then(() => console.log("Mensaje enviado con éxito"))
+        .catch((error) => console.log(error))
     );
-  }
-
-  export default socketController;
+  });
+}

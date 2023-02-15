@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import sessionMiddleware from "./src/auth/session.js";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import socketController from "./src/sockets/socket_io.js";
+import * as socket from "./src/sockets/socket_io.js";
 
 // Express
 
@@ -45,4 +45,4 @@ server.on("error", (error) => {
 // Socket io
 
 const io = new Server(httpServer);
-io.on("connection", socketController);
+socket.start(io);
