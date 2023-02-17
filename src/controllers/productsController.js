@@ -10,7 +10,9 @@ class ProductsController {
     if (req.session.user) {
       this.products
         .getAll()
-        .then((data) => res.json(data))
+        .then((data) => {
+          req.session.counter++;
+          return res.json(data)})
         .catch((error) => res.json(error));
     } else {
       res.status(401).json({ error: "No tiene permisos" });
