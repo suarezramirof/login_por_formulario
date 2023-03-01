@@ -1,19 +1,16 @@
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { config } from "dotenv";
-config();
-const USER = process.env.USER;
-const PASSWORD = process.env.PASSWORD;
+import { MongoAtlasUri, SessionTimeout } from "../config.js";
 const sessionMiddleware = session({
   store: MongoStore.create({
-    mongoUrl: `mongodb+srv://${USER}:${PASSWORD}@cluster0.zuesfin.mongodb.net/prueba`,
+    mongoUrl: MongoAtlasUri,
     mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
   }),
   secret: "miapp",
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 60000,
+    maxAge: SessionTimeout,
   },
 });
 
