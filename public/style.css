@@ -154,3 +154,20 @@ h2 {
     margin: auto;
   }
 }
+
+.error-page {
+  padding-top: 5%;
+  background-color: antiquewhite;
+  width: 80%;
+  min-height: 50%;
+  margin: auto;
+}
+
+.error-title {
+  text-align: center;
+}
+
+#frase_logout {
+  text-align: center;
+  margin-top: 10%;
+}
