@@ -6,17 +6,13 @@ class ProductsController {
     this.products = products;
   }
 
-  getProducts = (req, res) => {
-    if (req.session.user) {
-      this.products
-        .getAll()
-        .then((data) => {
-          req.session.counter++;
-          return res.json(data)})
-        .catch((error) => res.json(error));
-    } else {
-      res.status(401).json({ error: "No tiene permisos" });
-    }
+  getProducts = (_req, res) => {
+    this.products
+      .getAll()
+      .then((data) => {
+        return res.json(data);
+      })
+      .catch((error) => res.json(error));
   };
 
   addProduct = (req, res) => {
